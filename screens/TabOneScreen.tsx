@@ -94,7 +94,7 @@ export default function TabOneScreen({
       <ScrollView>
         {movies?.map((movie) => (
           <View key={movie.imdbID}>
-            <Card movie={movie} />
+            <Card movie={movie}/>
           </View>
         ))}
       </ScrollView>
