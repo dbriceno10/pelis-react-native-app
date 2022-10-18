@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, ScrollView, View, TextInput, Button } from "react-native";
+import { StyleSheet, ScrollView, View, TextInput } from "react-native";
+import { Button, Card, Avatar } from "react-native-paper";
 import axios, { AxiosResponse } from "axios";
 import EditScreenInfo from "../components/EditScreenInfo";
-// import { Text, View } from "../components/Themed";
 import { RootTabScreenProps } from "../types";
 import { Movie, ResponseMovies } from "../interfaces";
-import Card from "../components/Card";
+import CardItem from "../components/Card";
+import { saveMovie } from "../assets/utils/localStorage";
+import ActionButton from "../components/ActionButton/ActionButton";
 
 const URL_BASE = "http://www.omdbapi.com/?i=tt3896198&apikey=1bc6c554";
 
 let timeId: any = null;
+
+const LeftContent = (props: any) => (
+  <Avatar.Icon {...props} icon="arrow-right" />
+);
 
 export default function TabOneScreen({
   navigation,
@@ -45,14 +51,13 @@ export default function TabOneScreen({
   const handleSearch = (e: any) => {
     clearTimeout(timeId);
     setSearch(e.target.value);
-    timeId = setTimeout(async() => {
+    timeId = setTimeout(async () => {
       try {
         const newMovies = await getData(e.target.value);
-        if(!newMovies?.data.Search || newMovies === undefined) throw new Error()
-        setPage(1)
-      } catch (error) {
-        
-      }
+        if (!newMovies?.data.Search || newMovies === undefined)
+          throw new Error();
+        setPage(1);
+      } catch (error) {}
     }, 3000);
   };
 
@@ -64,7 +69,6 @@ export default function TabOneScreen({
         throw new Error("No hay más peliculas");
       setPage(newPage);
     } catch (error) {
-      alert(error);
       console.error(error);
       setPage(page - 1);
     }
@@ -88,28 +92,53 @@ export default function TabOneScreen({
       <TextInput
         value={search}
         onChange={handleSearch}
-        style={{ backgroundColor: "#fff", marginTop: "10px", width: '60%',borderRadius: 4 }}
+        style={{
+          backgroundColor: "#fff",
+          marginTop: "10px",
+          width: "60%",
+          borderRadius: 4,
+        }}
       />
 
       <ScrollView>
         {movies?.map((movie) => (
           <View key={movie.imdbID}>
-            <Card movie={movie}/>
+            <CardItem
+              movie={movie}
+              actionButton={
+                <ActionButton
+                  icon={"cards-heart"}
+                  movie={movie}
+                  movieFunction={saveMovie}
+                  title="Guardar"
+                />
+              }
+            />
           </View>
         ))}
       </ScrollView>
-      <View style={{ display: "flex", flexDirection: "row", marginBottom: "10px" }}>
-        <Button title="Anterior" onPress={prevPage} />
-        <Button title="Siguiente" onPress={nextPage} />
+      <View
+        style={{ display: "flex", flexDirection: "row", marginBottom: "10px" }}
+      >
+        <Button buttonColor="#6750a4" textColor="#fff" onPress={prevPage}>
+          Anterior
+        </Button>
+        <Button buttonColor="#6750a4" textColor="#fff" onPress={nextPage}>
+          Siguiente
+        </Button>
       </View>
       <Button
-        title="Resetear"
+        buttonColor="#6750a4"
+        textColor="#fff"
+        icon="reload"
         onPress={() => {
           getData();
           setSearch("");
           setPage(1);
         }}
-      />
+      >
+        Resetear
+      </Button>
     </View>
   );
 }
