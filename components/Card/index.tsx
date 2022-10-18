@@ -13,7 +13,7 @@ interface CardItemProps {
 const styles = StyleSheet.create({
   img: {
     minWidth: "300px",
-    maxHeight: "429px",
+    minHeight: "300px",
   },
   center: {
     display: "flex",
