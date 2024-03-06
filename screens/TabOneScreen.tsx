@@ -92,12 +92,7 @@ export default function TabOneScreen({
       <TextInput
         value={search}
         onChange={handleSearch}
-        style={{
-          backgroundColor: "#fff",
-          marginTop: "10px",
-          width: "60%",
-          borderRadius: 4,
-        }}
+        style={styles.textInput}
       />
 
       <ScrollView>
@@ -117,9 +112,7 @@ export default function TabOneScreen({
           </View>
         ))}
       </ScrollView>
-      <View
-        style={{ display: "flex", flexDirection: "row", marginBottom: "10px" }}
-      >
+      <View style={styles.buttomContainer}>
         <Button buttonColor="#6750a4" textColor="#fff" onPress={prevPage}>
           Anterior
         </Button>
@@ -157,5 +150,15 @@ const styles = StyleSheet.create({
     marginVertical: 30,
     height: 1,
     width: "80%",
+  },
+  textInput: {
+    backgroundColor: "#fff",
+    marginTop: 10,
+    width: "60%",
+    borderRadius: 4,
+  },
+  buttomContainer: {
+    flexDirection: "row",
+    marginBottom: 10,
   },
 });

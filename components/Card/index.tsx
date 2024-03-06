@@ -10,22 +10,6 @@ interface CardItemProps {
   actionButton: JSX.Element;
 }
 
-const styles = StyleSheet.create({
-  img: {
-    minWidth: "300px",
-    minHeight: "300px",
-  },
-  center: {
-    display: "flex",
-    alignItems: "center",
-  },
-  margin: {
-    marginTop: "10px",
-    marginBottom: "10px",
-    maxWidth: "350px",
-  },
-});
-
 const CardItem: React.FC<CardItemProps> = ({ movie, actionButton }) => (
   <Card style={styles.margin}>
     <Card.Title title={movie.Title} subtitle={movie.Year} left={LeftContent} />
@@ -39,5 +23,20 @@ const CardItem: React.FC<CardItemProps> = ({ movie, actionButton }) => (
     {actionButton}
   </Card>
 );
+
+const styles = StyleSheet.create({
+  img: {
+    minWidth: 300,
+    minHeight: 300,
+  },
+  center: {
+    alignItems: "center",
+  },
+  margin: {
+    marginTop: 10,
+    marginBottom: 10,
+    maxWidth: 350,
+  },
+});
 
 export default CardItem;
