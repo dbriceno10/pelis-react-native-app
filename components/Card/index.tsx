@@ -20,14 +20,14 @@ const CardItem: React.FC<CardItemProps> = ({ movie, actionButton }) => (
     <View style={styles.center}>
       <Card.Cover style={styles.img} source={{ uri: movie.Poster }} />
     </View>
-    {actionButton}
+    <View style={styles.buttom}>{actionButton}</View>
   </Card>
 );
 
 const styles = StyleSheet.create({
   img: {
-    minWidth: 300,
-    minHeight: 300,
+    minWidth: 150,
+    // minHeight: 150,
   },
   center: {
     alignItems: "center",
@@ -36,6 +36,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     maxWidth: 350,
+    width: '100%'
+  },
+  buttom: {
+    marginTop: 10,
   },
 });
 
