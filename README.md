@@ -38,7 +38,7 @@ Contribución
 Licencia
 Este proyecto está bajo la licencia MIT. Consulta el archivo LICENSE para más detalles.
 
-<img src="./assets/images/screenshoots/Screenshot_1709865621.png"/>
+<img src="./assets/images/screenshoots/Screenshot_1709865621.png" width="300"/>
 
 <hr/>
 
